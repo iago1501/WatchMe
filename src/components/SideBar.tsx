@@ -1,5 +1,7 @@
+export {memo} from 'react'
 import { Button } from './Button';
 import { GenreResponseProps } from '../App'
+import { memo } from 'react';
 
 interface SidebarProps{
   genres: GenreResponseProps[]
@@ -7,7 +9,7 @@ interface SidebarProps{
   handleClickButton(genreId: number): void
 }
 
-export function SideBar({genres, selectedGenreId, handleClickButton}: SidebarProps) {
+const SideBar = ({genres, selectedGenreId, handleClickButton}: SidebarProps) => {
   
   
   return(
@@ -30,3 +32,7 @@ export function SideBar({genres, selectedGenreId, handleClickButton}: SidebarPro
 </nav>
 )
 }
+
+export default memo(SideBar, (prevProps, nextProps) => {
+  return prevProps.selectedGenreId !== nextProps.selectedGenreId
+})

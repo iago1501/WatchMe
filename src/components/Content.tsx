@@ -17,7 +17,7 @@ export function Content({ selectedGenre, movies }: ContentProps) {
 
       <main>
         <div className="movies-list">          
-          {movies.map(function (movie) {
+          {movies.map( movie => {
             const movieValues = {...movie}
             return(
               <MovieCard key={movie.imdbID} movie={movieValues}

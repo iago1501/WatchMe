@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useCallback, useState } from "react";
 
-import { MovieCard } from "./components/MovieCard";
-
-import { SideBar } from "./components/SideBar";
+import SideBar  from "./components/SideBar";
 import { Content } from './components/Content';
 
 import { api } from "./services/api";
@@ -35,6 +33,7 @@ export function App() {
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
 
   const [movies, setMovies] = useState<MovieProps[]>([]);
+  
   const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>(
     {} as GenreResponseProps
   );
@@ -59,9 +58,11 @@ export function App() {
       });
   }, [selectedGenreId]);
 
-  function handleClickButton(id: number) {
-    setSelectedGenreId(id);
-  }
+  const handleClickButton = useCallback(
+    (id: number) => setSelectedGenreId(id),
+    [],
+  )
+  
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
